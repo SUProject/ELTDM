@@ -34,7 +34,7 @@ import monoKMeans.testFunction as monokmtf
 
 # folder with the input file. we put it as working directory as we write the output in it.
 inOutFolder = input("Enter working directory (currently ../input/ please): ")
-print(inOutFolder)
+
 os.chdir(inOutFolder)
 
 # number of clusters and method
@@ -51,7 +51,6 @@ method = input("Enter distribution method (mono or mutli please): ")
 
 y = [i   for i in range(1, len(inFileContent))] # just to test the output
 
-print(y[1])
 #####
 # clustering multi thread
 #####
