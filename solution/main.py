@@ -34,7 +34,6 @@ import monoKMeans.testFunction as monokmtf
 
 # folder with the input file. we put it as working directory as we write the output in it.
 inOutFolder = input("Enter working directory (currently ../input/ please): ")
-
 os.chdir(inOutFolder)
 
 # number of clusters and method
