@@ -1,7 +1,7 @@
 # -*-coding:Latin-1 -*
 
 #########################################################
-# Main
+# Main commentaire secret
 # ELADM project
 # WORKS ONLY on windows
 #########################################################
