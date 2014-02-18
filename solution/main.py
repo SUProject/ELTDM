@@ -16,7 +16,7 @@
 #########################################################
 
 #####
-# packages import
+# packages import & seed
 #####
 
 ## Common
@@ -27,8 +27,12 @@ import numpy as np
 
 ## Perso
 import fileManagement.function as fmf
-import monoKMeans.testFunction as monokmtf
+import monoKMeans.function as monokmf
+import random as rd
 
+
+## seed
+rd.seed(8)
 
 #####
 # input import
@@ -41,6 +45,7 @@ os.chdir(inOutFolder)
 
 # number of clusters and method
 k = input("Enter number of clusters (only positive integers please): ")
+k = int(k)
 method = input("Enter distribution method (mono or mutli please): ")
 
 # building a dictionary x from csv file
@@ -50,27 +55,38 @@ method = input("Enter distribution method (mono or mutli please): ")
 #####
 # clustering mono thread
 #####
+if method == "mono":
+    center = monokmf.initialize(x, k)
+    hasConverged = False
 
-n = x.shape[0]
-y = np.array([i for i in range(0, n)]).reshape(n, 1) # just to test the output
+    while not hasConverged:
+        centerOld = center
+        matDist = monokmf.allDistance(x, center)
+        vecAlloc = monokmf.alloc(matDist)
+        center = monokmf.newCenter(x, vecAlloc, k)
+        hasConverged = (center == centerOld).all()
 
 
 #####
 # clustering multi thread
 #####
-
+elif method == "multi":
+    None
 
 
 #####
 # output export
 #####
+else:
+    print("Error: Wrong method type provided.")
 
+          
 # writing the result with a new column
 
-x = np.hstack((x, y)) # argument is a real tuple => (,) inside the ().
-fmf.csvFromFeatureArrayAndClust("data_clustered_" + method + ".csv",\
+xAugmented = np.hstack((x, vecAlloc)) # argument is a real tuple => (,) inside the ().
+fmf.csvFromFeatureArrayAndClust("data_clustered_" + method + str(k) + ".csv",\
                                varName,\
-                               x)
+                               xAugmented)
 
 
 
