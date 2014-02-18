@@ -29,8 +29,9 @@ def Reduce(x,y):
 #####
 # Modulus part for test here
 #####
+
 if __name__ == "__main__":
-		print(" Calculate the length of two lists of objects ")
+		print("Calculate the length of two lists of objects ")
 		z = eval(input("vector of objects:"))
 		y = eval(input("vector of objects:"))
 		L = Map(z)
@@ -45,5 +46,4 @@ if __name__ == "__main__":
         #fruits = {"pommes":21, "melons":3, "poires":31}
         #print(fruits.keys())
 
-		
 os.system("pause")
