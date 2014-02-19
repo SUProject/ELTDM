@@ -88,6 +88,31 @@ def ourMap(listChunk):
 
         return(res)
 
+def ourReduce(listMapped):
+        """
+        Function that computes the new real global centers
+        according to the result of ourMap().
+        """
+        # initialization on the first local center, for the shape
+        (k, p) = listMapped[0][0].shape
+        center = np.zeros((k,p))
+        m = len(listMapped)
+        
+        # global center
+        for ic in range(0, k):
+                nbPoint = 0
+                # number of points around center k
+                for il in range(0, m):
+                        nbPoint = nbPoint + listMapped[il][1][ic]
+                # weighted average
+                for il in range(0, m):
+                        center[ic,:] = center[ic,:] + \
+                                 1/nbPoint * listMapped[il][1][ic] * listMapped[il][0][ic]
+
+        return(center)
+
+
+
 #####
 # Modulus part for test here
 #####
@@ -123,16 +148,20 @@ if __name__ == "__main__":
         xMapListProcessed = ourMap(xMapList)
         print("yo le resultat !")
         print(xMapListProcessed)
-                       
+        print(xMapListProcessed[0][0].shape)
+        print(xMapListProcessed[0][0][1])
 
 ##        single_count_tuples = pool.map(Map, partitioned_text)
 
  
         ### Organize the count tuples; lists of tuples by token key
         ##token_to_tuples = Partition(single_count_tuples)
-        ## 
-        ### Collapse the lists of tuples into total term frequencies
-        ##term_frequencies = pool.map(Reduce, token_to_tuples.items())
+        ##
+
+        
+        ### Collapse the lists of results into global centers
+        center2 = ourReduce(xMapListProcessed)
+        print(center2)
 		
 		
 
