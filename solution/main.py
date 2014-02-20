@@ -14,7 +14,7 @@
 # tutorial numpy
 # http://wiki.scipy.org/Tentative_NumPy_Tutorial#head-c5f4ceae0ab4b1313de41aba9104d0d7648e35cc
 #########################################################
-
+#
 #####
 # packages import & seed
 #####
