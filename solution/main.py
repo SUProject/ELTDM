@@ -104,7 +104,7 @@ elif method == "multi":
 
     #while not hasConverged:
     #    centerOld = center
-        xMapListProcessed = pool.map(mutlikmf.ourMap, xMapList)
+    #    xMapListProcessed = pool.map(mutlikmf.ourMap, xMapList)
     #    center = pool.map(multikmf.ourReduce, xMapListProcessed)
     #    hasConverged = (center == centerOld).all()
     
@@ -112,10 +112,10 @@ elif method == "multi":
     # output export (vecAlloc n'existe pas encore dans multi donc on peut pas tester si à la fin)
     #####
     # writing the result with a new column
-    xAugmented = np.hstack((x, vecAllocMap)) # argument is a real tuple => (,) inside the ().
-    fmf.csvFromFeatureArrayAndClust("data_clustered_" + method + str(k) + ".csv",\
-                               varName,\
-                               xAugmented)
+    #xAugmented = np.hstack((x, vecAllocMap)) # argument is a real tuple => (,) inside the ().
+    #fmf.csvFromFeatureArrayAndClust("data_clustered_" + method + str(k) + ".csv",\
+    #                           varName,\
+    #                           xAugmented)
 
     
     end = time.time()

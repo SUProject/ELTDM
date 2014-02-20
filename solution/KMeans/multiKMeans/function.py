@@ -13,7 +13,7 @@ import os
 import multiprocessing as mltp
 import numpy as np
 # perso
-import monoKMeans.function as monokmf
+#import monoKMeans.function as monokmf
 
 #####
 # Modulus part for import in the main
