@@ -41,7 +41,7 @@ def newCenterMap(xMap, vecAllocMap, k):
         
         Returns the LOCAL updates centers with regard to
         the new allocation of x's arround the new centers.
-        WARNING : we don not take into account the case when
+        WARNING : we don't take into account the case when
         a center 'has no point around it'.
         This function also returns the number of points
         arround each local center as it is needed
@@ -95,6 +95,7 @@ def ourReduce(listMapped):
         """
         # initialization on the first local center, for the shape
         (k, p) = listMapped[0][0].shape
+        
         center = np.zeros((k,p))
         m = len(listMapped)
         
@@ -138,21 +139,22 @@ if __name__ == "__main__":
               
 ##        ### Build a pool of m processes
 ##        pool = mltp.Pool(processes = m,)
-##        
+##   
+        pool = mltp.Pool(processes = 2)
         ### Fragment the string data into m chunks
         xMapList = chunk(x, m)
         print(xMapList)
         
         ### Generate local centers
         ### (and number of points by local center, needed for the final center)
-        xMapListProcessed = ourMap(xMapList)
+        xMapListProcessed = pool.map(ourMap,xMapList)
         print("yo le resultat !")
         print(xMapListProcessed)
         print(xMapListProcessed[0][0].shape)
         print(xMapListProcessed[0][0][1])
 
 ##        single_count_tuples = pool.map(Map, partitioned_text)
-
+        os.system("pause")
  
         ### Organize the count tuples; lists of tuples by token key
         ##token_to_tuples = Partition(single_count_tuples)
@@ -162,8 +164,5 @@ if __name__ == "__main__":
         ### Collapse the lists of results into global centers
         center2 = ourReduce(xMapListProcessed)
         print(center2)
-		
-		
-
-
-os.system("pause")
+        
+        os.system("pause")
